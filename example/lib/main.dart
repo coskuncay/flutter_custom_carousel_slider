@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Custom Carousel Slider Demo'),
     );
   }
 }
@@ -30,13 +30,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<String> imageList = [
-    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg",
-    "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg"
+  List<CarouselItem> itemList = [
+    CarouselItem(
+      image: const NetworkImage(
+        'https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg',
+      ),
+      boxDecoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: FractionalOffset.bottomCenter,
+          end: FractionalOffset.topCenter,
+          colors: [
+            Colors.black.withOpacity(1),
+            Colors.black.withOpacity(.3),
+          ],
+          stops: const [0.0, 1.0],
+        ),
+      ),
+      title: 'Emre Emre Emre',
+      onImageTap: () {
+        print("on image tap");
+      },
+    ),
+    CarouselItem(
+      image: const NetworkImage(
+        'https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg',
+      ),
+      onImageTap: () {
+        print("2222");
+      },
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -45,8 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: CustomCarouselSlider(
-        children: imageList,
-        height: 100,
+        items: itemList,
+        height: 200,
+        autoplay: true,
       ),
     );
   }
