@@ -1,7 +1,6 @@
 library flutter_custom_carousel_slider;
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 //Models
@@ -32,48 +31,64 @@ class CustomCarouselSlider extends StatefulWidget {
     this.unselectedDotWidth = 6,
   }) : super(key: key);
 
-  /// element list
+  /// [List<CarouselItem>] item list
   final List<CarouselItem> items;
 
-  /// height of container
+  /// Height of container
   final double height;
 
-  /// height of container
+  /// Height of sub container.
   final double? subHeight;
 
-  /// width of container
+  /// Width of container
   final double width;
 
+  /// Show of indicators. Default true
   final bool showIndicator;
 
+  /// Show title background(Box). Default true
   final bool showSubBackground;
 
+  /// Auto play of the slider. Default true
   final bool autoplay;
 
+  /// Transition page animation timing [Curve]. Default is [Curves.ease]
   final Curve animationCurve;
 
+  /// [Duration] page animation duration. Default is 300ms.
   final Duration animationDuration;
 
+  /// [Duration] of the Auto play slider. Default 3 seconds
   final Duration autoplayDuration;
 
+  /// Shape of indicator. Default is [BoxShape.circle]
   final BoxShape indicatorShape;
 
+  /// Horizontal margin between of each dot. Default is 5.0
   final double dotSpacing;
 
+  /// [Color] of selected dot. Default is Color(0XFFACAEBA)
   final Color selectedDotColor;
 
+  /// Height of selected dot. Default is 8
   final double selectedDotHeight;
 
+  /// Width of selected dot. Default is 8
   final double selectedDotWidth;
 
+  /// Height of selected dot. Default is 6
   final double unselectedDotHeight;
 
+  /// Width of selected dot. Default is 6
   final double unselectedDotWidth;
 
+  /// [Color] of unselected dot. Default is Color(0XFFACAEBA)
   final Color unselectedDotColor;
 
+  /// [double] Box Padding Horizontal. Default is 10.0
   final double boxPaddingHorizontal;
 
+  /// [double] Box Padding Vertical. Default is 2.0
   final double boxPaddingVertical;
 
   @override
@@ -138,7 +153,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
             child: GestureDetector(
               onTap: () {
                 if (widget.items[selectedIndex].onImageTap != null) {
-                  widget.items[selectedIndex].onImageTap!();
+                  widget.items[selectedIndex].onImageTap!(selectedIndex);
                 }
               },
               onHorizontalDragEnd: (details) {
@@ -156,7 +171,6 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                     itemBuilder: (BuildContext ctx, index) {
                       return Container(
                         decoration: BoxDecoration(
-                          // color: sourceList[index].color.withOpacity(.2),
                           image: DecorationImage(
                             image: widget.items[selectedIndex].image,
                             fit: BoxFit.fill,

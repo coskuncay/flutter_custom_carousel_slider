@@ -1,26 +1,26 @@
 part of flutter_custom_carousel_slider;
 
 class CarouselItem {
-  /// Title of item
+  /// Title of item [String]
   String? title;
 
   /// [TextStyle] of Title
   TextStyle? titleTextStyle;
 
-  /// Title of leftSubtitle
+  /// Title of leftSubtitle [String]
   String? leftSubtitle;
 
   /// [TextStyle] of leftSubtitle
   TextStyle? leftSubtitleTextStyle;
 
-  /// Title of rightSubtitle
+  /// Title of rightSubtitle [String]
   String? rightSubtitle;
 
   /// [TextStyle] of rightSubtitle
   TextStyle? rightSubtitleTextStyle;
 
-  /// [Function] of on image tap event
-  void Function()? onImageTap;
+  /// [Function] of on image tap event with current page index
+  void Function(int)? onImageTap;
 
   /// [BoxDecoration] of item
   BoxDecoration? boxDecoration;

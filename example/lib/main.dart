@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -47,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       title: 'Emre Emre Emre',
-      onImageTap: () {
+      onImageTap: (i) {
         print("on image tap");
       },
     ),
@@ -55,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       image: const NetworkImage(
         'https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg',
       ),
-      onImageTap: () {
+      onImageTap: (i) {
         print("2222");
       },
     ),
