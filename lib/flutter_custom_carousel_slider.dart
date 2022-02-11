@@ -20,27 +20,28 @@ class CustomCarouselSlider extends StatefulWidget {
     this.indicatorShape = BoxShape.circle,
     this.dotSpacing = 5.0,
     this.selectedDotColor = Colors.white,
-    this.unselectedDotColor = const Color(0XFFACAEBA),
-    this.showIndicator = true,
-    this.showSubBackground = true,
-    this.boxPaddingHorizontal = 10,
-    this.boxPaddingVertical = 2,
     this.selectedDotHeight = 8,
     this.selectedDotWidth = 8,
+    this.unselectedDotColor = const Color(0XFFACAEBA),
     this.unselectedDotHeight = 6,
     this.unselectedDotWidth = 6,
+    this.showIndicator = true,
+    this.showSubBackground = true,
+    this.showText = true,
+    this.boxPaddingHorizontal = 10,
+    this.boxPaddingVertical = 2,
   }) : super(key: key);
 
   /// [List<CarouselItem>] item list
   final List<CarouselItem> items;
 
-  /// Height of container
+  /// Height of container.Default is 200
   final double height;
 
-  /// Height of sub container.
+  /// Height of sub container.Default is height * .4
   final double? subHeight;
 
-  /// Width of container
+  /// Width of container. Default is 400
   final double width;
 
   /// Show of indicators. Default true
@@ -48,6 +49,9 @@ class CustomCarouselSlider extends StatefulWidget {
 
   /// Show title background(Box). Default true
   final bool showSubBackground;
+
+  /// Show all text. Default true
+  final bool showText;
 
   /// Auto play of the slider. Default true
   final bool autoplay;
@@ -76,14 +80,14 @@ class CustomCarouselSlider extends StatefulWidget {
   /// Width of selected dot. Default is 8
   final double selectedDotWidth;
 
+  /// [Color] of unselected dot. Default is Color(0XFFACAEBA)
+  final Color unselectedDotColor;
+
   /// Height of selected dot. Default is 6
   final double unselectedDotHeight;
 
   /// Width of selected dot. Default is 6
   final double unselectedDotWidth;
-
-  /// [Color] of unselected dot. Default is Color(0XFFACAEBA)
-  final Color unselectedDotColor;
 
   /// [double] Box Padding Horizontal. Default is 10.0
   final double boxPaddingHorizontal;
@@ -96,12 +100,12 @@ class CustomCarouselSlider extends StatefulWidget {
 }
 
 class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
-  late Timer timer;
+  Timer? timer;
   late PageController _pageController;
   int selectedIndex = 0;
 
   TextStyle subtitleTextstyle = const TextStyle(
-    color: Colors.grey,
+    color: Colors.white,
     fontSize: 12,
   );
 
@@ -138,7 +142,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
   @override
   void dispose() {
     _pageController.dispose();
-    timer.cancel();
+    timer?.cancel();
     super.dispose();
   }
 
@@ -227,26 +231,30 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                           ),
                         )
                       : Container(),
-                  Positioned(
-                    bottom: 5,
-                    left: 10,
-                    child: Text(
-                      widget.items[selectedIndex].leftSubtitle ?? '',
-                      style:
-                          widget.items[selectedIndex].leftSubtitleTextStyle ??
-                              subtitleTextstyle,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 5,
-                    right: 10,
-                    child: Text(
-                      widget.items[selectedIndex].rightSubtitle ?? '',
-                      style:
-                          widget.items[selectedIndex].rightSubtitleTextStyle ??
-                              subtitleTextstyle,
-                    ),
-                  ),
+                  widget.showText
+                      ? Positioned(
+                          bottom: 5,
+                          left: 10,
+                          child: Text(
+                            widget.items[selectedIndex].leftSubtitle ?? '',
+                            style: widget.items[selectedIndex]
+                                    .leftSubtitleTextStyle ??
+                                subtitleTextstyle,
+                          ),
+                        )
+                      : Container(),
+                  widget.showText
+                      ? Positioned(
+                          bottom: 5,
+                          right: 10,
+                          child: Text(
+                            widget.items[selectedIndex].rightSubtitle ?? '',
+                            style: widget.items[selectedIndex]
+                                    .rightSubtitleTextStyle ??
+                                subtitleTextstyle,
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
             ),

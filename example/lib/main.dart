@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Custom Carousel Slider Demo'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -32,31 +33,45 @@ class _MyHomePageState extends State<MyHomePage> {
   List<CarouselItem> itemList = [
     CarouselItem(
       image: const NetworkImage(
-        'https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg',
+        'https://miro.medium.com/max/1400/1*RpaR1pTpRa0PUdNdfv4njA.png',
       ),
       boxDecoration: BoxDecoration(
         gradient: LinearGradient(
           begin: FractionalOffset.bottomCenter,
           end: FractionalOffset.topCenter,
           colors: [
-            Colors.black.withOpacity(1),
+            Colors.blueAccent.withOpacity(1),
             Colors.black.withOpacity(.3),
           ],
           stops: const [0.0, 1.0],
         ),
       ),
-      title: 'Emre Emre Emre',
-      onImageTap: (i) {
-        print("on image tap");
-      },
+      title:
+          'Push your creativity to its limits by reimagining this classic puzzle!',
+      titleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.white,
+      ),
+      leftSubtitle: '\$51,046 in prizes',
+      rightSubtitle: '4882 participants',
+      rightSubtitleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.black,
+      ),
+      onImageTap: (i) {},
     ),
     CarouselItem(
       image: const NetworkImage(
-        'https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg',
+        'https://pbs.twimg.com/profile_banners/1444928438331224069/1633448972/600x200',
       ),
-      onImageTap: (i) {
-        print("2222");
-      },
+      title: '@coskuncay published flutter_custom_carousel_slider!',
+      titleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.white,
+      ),
+      leftSubtitle: '11 Feb 2022',
+      rightSubtitle: 'v1.0.0',
+      onImageTap: (i) {},
     ),
   ];
   @override
@@ -65,10 +80,60 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: CustomCarouselSlider(
-        items: itemList,
-        height: 200,
-        autoplay: true,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Text('Custom BoxDecoration and Autoplay'),
+                  CustomCarouselSlider(
+                    items: itemList,
+                    height: 150,
+                    subHeight: 50,
+                    width: MediaQuery.of(context).size.width * .9,
+                    autoplay: true,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Text('Show Only Customize Indicators'),
+                  CustomCarouselSlider(
+                    items: itemList,
+                    height: 150,
+                    subHeight: 50,
+                    width: MediaQuery.of(context).size.width * .9,
+                    autoplay: false,
+                    showText: false,
+                    showSubBackground: false,
+                    indicatorShape: BoxShape.rectangle,
+                    selectedDotColor: Colors.red,
+                    unselectedDotColor: Colors.white,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Text('Show only images and Autoplay'),
+                  CustomCarouselSlider(
+                    items: itemList,
+                    height: 150,
+                    subHeight: 50,
+                    width: MediaQuery.of(context).size.width * .9,
+                    autoplay: true,
+                    showSubBackground: false,
+                    showIndicator: false,
+                    showText: false,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
