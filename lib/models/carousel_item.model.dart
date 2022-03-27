@@ -25,8 +25,9 @@ class CarouselItem {
   /// [BoxDecoration] of item
   BoxDecoration? boxDecoration;
 
-  /// [NetworkImage] of item
-  final NetworkImage image;
+  /// image of item
+  // ignore: prefer_typing_uninitialized_variables
+  var image;
 
   CarouselItem({
     this.title,
@@ -37,6 +38,6 @@ class CarouselItem {
     this.rightSubtitleTextStyle,
     this.onImageTap,
     this.boxDecoration,
-    required this.image,
+    this.image,
   });
 }

@@ -176,7 +176,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                       return Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: widget.items[selectedIndex].image,
+                            image: widget.items[selectedIndex].image!,
                             fit: BoxFit.fill,
                           ),
                           borderRadius: BorderRadius.circular(5),

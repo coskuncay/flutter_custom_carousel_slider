@@ -73,6 +73,17 @@ class _MyHomePageState extends State<MyHomePage> {
       rightSubtitle: 'v1.0.0',
       onImageTap: (i) {},
     ),
+    CarouselItem(
+      image: const ExactAssetImage('assets/justec.jpg'),
+      title: 'npx coskuncay',
+      titleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.white,
+      ),
+      leftSubtitle: '27 Mar 2022',
+      rightSubtitle: 'v1.1.0',
+      onImageTap: (i) {},
+    ),
   ];
   @override
   Widget build(BuildContext context) {
