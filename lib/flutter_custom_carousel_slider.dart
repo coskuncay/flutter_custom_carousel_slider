@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 //Models
 part 'models/carousel_item.model.dart';
+part 'models/indicator_position.dart';
 
 class CustomCarouselSlider extends StatefulWidget {
   const CustomCarouselSlider({
@@ -25,7 +26,7 @@ class CustomCarouselSlider extends StatefulWidget {
     this.unselectedDotColor = const Color(0XFFACAEBA),
     this.unselectedDotHeight = 6,
     this.unselectedDotWidth = 6,
-    this.showIndicator = true,
+    this.indicatorPosition = IndicatorPosition.insidePicture,
     this.showSubBackground = true,
     this.showText = true,
     this.boxPaddingHorizontal = 10,
@@ -44,8 +45,8 @@ class CustomCarouselSlider extends StatefulWidget {
   /// Width of container. Default is 400
   final double width;
 
-  /// Show of indicators. Default true
-  final bool showIndicator;
+  /// Position of indicators. Default is [IndicatorPosition.insidePicture]
+  final IndicatorPosition indicatorPosition;
 
   /// Show title background(Box). Default true
   final bool showSubBackground;
@@ -222,7 +223,8 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                           ),
                         )
                       : Container(),
-                  widget.showIndicator
+                  widget.indicatorPosition.showIndicator &&
+                          widget.indicatorPosition.showIndicatorInside
                       ? Positioned.fill(
                           bottom: 5,
                           child: Align(
@@ -259,6 +261,18 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
               ),
             ),
           ),
+          widget.indicatorPosition.showIndicator &&
+                  widget.indicatorPosition.showIndicatorBottom
+              ? Column(
+                  children: [
+                    const SizedBox(height: 5),
+                    Align(
+                      child: _buildIndicator(),
+                      alignment: Alignment.bottomRight,
+                    ),
+                  ],
+                )
+              : Container(),
         ],
       ),
     );

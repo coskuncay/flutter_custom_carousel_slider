@@ -111,7 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 20),
               Column(
                 children: [
-                  const Text('Show Only Customize Indicators'),
+                  const Text(
+                      'Show Only Customize Indicators and Bottom Position'),
                   CustomCarouselSlider(
                     items: itemList,
                     height: 150,
@@ -121,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     showText: false,
                     showSubBackground: false,
                     indicatorShape: BoxShape.rectangle,
+                    indicatorPosition: IndicatorPosition.bottom,
                     selectedDotColor: Colors.red,
                     unselectedDotColor: Colors.white,
                   ),
@@ -137,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width * .9,
                     autoplay: true,
                     showSubBackground: false,
-                    showIndicator: false,
+                    indicatorPosition: IndicatorPosition.none,
                     showText: false,
                   ),
                 ],
